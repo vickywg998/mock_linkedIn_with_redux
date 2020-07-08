@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import fetchProducts from './fetchProducts';
+import {getProductsError, getProducts, getProductsPending } from './productsReducer';
+
+import Spinner from './spinner'
+
+class ProductView extends Component {
+    constructor(props) {
+        super(props);
+
+        this.shouldComponentRender = this.shouldComponentRender.bind(this);
+    }
+
+    componentWillMount() {
+        const {fetchProducts} = this.props;
+        fetchProducts();
+    }
+
+    shouldComponentRender() {
+        const {pending} = this.props;
+        if(this.pending === false) return false;
+        // more tests
+        return true;
+    }
+
+    render() {
+        const {products, error, pending} = this.props;
+
+        if(!this.shouldComponentRender()) return <Spinner />
+
+        return (
+            <div className='product-list-wrapper'>
+                {error && <span className='product-list-error'>{error}</span>}
+                <ul>
+        {products.map(product =>
+          <li key={product.data.id}>{product.data.email}</li>
+        )}
+      </ul>
+            </div>
+
+            
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    error: getProductsError(state),
+    products: getProducts(state),
+    pending: getProductsPending(state)
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    fetchProducts: fetchProducts
+}, dispatch)
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProductView );
