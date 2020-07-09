@@ -1,25 +1,25 @@
-import {FETCH_PRODUCTS_PENDING, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_ERROR} from './action';
+import {FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR} from './action';
 
 const initialState = {
     pending: false,
-    products: [],
+    data: [],
     error: null
 }
 
-export default function productsReducer(state = initialState, action) {
+export default function usersReducer(state = initialState, action) {
     switch(action.type) {
-        case FETCH_PRODUCTS_PENDING:
+        case FETCH_USERS_PENDING:
             return {
                 ...state,
                 pending: true
             }
-        case FETCH_PRODUCTS_SUCCESS:
+        case FETCH_USERS_SUCCESS:
             return {
                 ...state,
                 pending: false,
-                products: action.payload
+                data: action.payload
             }
-        case FETCH_PRODUCTS_ERROR:
+        case FETCH_USERS_ERROR:
             return {
                 ...state,
                 pending: false,
@@ -30,10 +30,8 @@ export default function productsReducer(state = initialState, action) {
     }
 }
 
-export const getProducts = state => state.products;
-export const getProductsPending = state => state.pending;
-export const getProductsError = state => state.error;
-
-
+export const getUsers = state => state.data;
+export const getUsersPending = state => state.pending;
+export const getUsersError = state => state.error;
 
 // these are called selectors, are used to get defined parts of the state
