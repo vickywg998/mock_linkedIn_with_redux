@@ -8,10 +8,11 @@ export function fetchUsersPending() {
   };
 }
 
-export function fetchUsersSuccess(data) {
+export function fetchUsersSuccess(payload) {
+  console.log(payload, "from action")
   return {
     type: FETCH_USERS_SUCCESS,
-    data: data,
+    payload: payload,
   };
 }
 

@@ -1,62 +1,44 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
+import React, { useEffect, useState } from "react";
+import { connect, useSelector, useDispatch } from "react-redux";
 import fetchUsers from "./fetchUsers";
-import { getUsersError, getUsers, getUsersPending } from "./usersReducer";
+import "./App.css";
 
 import Spinner from "./spinner";
 
-class UserView extends Component {
-  constructor(props) {
-    super(props);
-  }
+function UserView(props) {
+  const [page, setPage] = useState(1);
 
-  componentWillMount() {
-    const { fetchUsers } = this.props;
-    fetchUsers();
-  }
+  //const page = useSelector(state => state.data.page)
 
-  shouldComponentRender = () => {
-    const { pending } = this.props;
-    if (this.pending === false) return false;
-    // more tests
-    return true;
-  };
+  const data = useSelector((state) => state.data);
 
-  render() {
-    const { data, error, pending } = this.props;
+  const dispatch = useDispatch();
 
-    if (!this.shouldComponentRender()) return <Spinner />;
+  useEffect(() => {
+    dispatch(fetchUsers({ page }));
+  }, [page]);
 
-    return (
-      <div className="product-list-wrapper">
-        {error && <span className="product-list-error">{error}</span>}
-        <ul>
-          {data.map((user) => (
-            <li key={user.id}>{user.email}</li>
-            // <p>{user.first_name}</p>
-          ))}
-          <p>hi</p>
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div className="product-list-wrapper">
+      {/* {error && <span className="product-list-error">{error}</span>} */}
+
+      {data.map((user) => (
+        <div key={user.id} className="usercard-border">
+          <p>{user.id}</p>
+          <img src={user.avatar} />
+          <p>
+            {user.first_name} {user.last_name}
+          </p>
+          <p>{user.email}</p>
+        </div>
+      ))}
+      <p>Page: {page}</p>
+
+      <button onClick={() => setPage(page - 1)}>Prev</button>
+      <button onClick={() => setPage(page + 1)}>Next</button>
+
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  error: getUsersError(state),
-  data: getUsers(state),
-  pending: getUsersPending(state),
-});
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      fetchUsers: fetchUsers,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserView);
+export default connect()(UserView);

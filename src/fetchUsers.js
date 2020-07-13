@@ -1,10 +1,15 @@
-import {fetchUsersPending, fetchUsersSuccess, fetchUsersError} from './action'
+import {fetchUsersPending, fetchUsersSuccess, fetchUsersError} from './actions/usersAction'
 
-function fetchUsers() {
+const defaultOptions = {
+    page: 1
+}
+
+function fetchUsers(options) {
+    const { page } = {...defaultOptions, ...options};
 
     return dispatch => {
         dispatch(fetchUsersPending());
-        fetch('https://reqres.in/api/users?page=2')
+        fetch(`https://reqres.in/api/users?page=${page}`)
         .then(res => res.json())
         .then(res => {
             if(res.error) {
