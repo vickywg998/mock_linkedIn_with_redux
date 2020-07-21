@@ -9,7 +9,7 @@ export function fetchUsersPending() {
 }
 
 export function fetchUsersSuccess(payload) {
-  console.log(payload, "from action")
+  // console.log(payload, "from action")
   return {
     type: FETCH_USERS_SUCCESS,
     payload: payload,

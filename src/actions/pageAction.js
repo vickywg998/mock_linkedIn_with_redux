@@ -3,17 +3,17 @@ export const INCREMENT_PAGE_COUNT = "INCREMENT_PAGE_COUNT";
 export const DECREMENT_PAGE_COUNT = "DECREMENT_PAGE_COUNT";
 
 
-export function fetchPageSuccess(payload) {
-  console.log(payload, "from action")
+export function incrementPage(payload) {
+  console.log(payload, "page payload from action")
   return {
-    type: FETCH_PAGE_SUCCESS,
+    type: INCREMENT_PAGE_COUNT,
     payload: payload,
   };
 }
 
-export function fetchPageError(error) {
+export function decrementPage(payload){
   return {
-    type: FETCH_PAGE_ERROR,
-    error: error,
+    type: DECREMENT_PAGE_COUNT,
+    payload: payload,
   };
 }

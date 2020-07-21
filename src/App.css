@@ -1,4 +1,66 @@
+h1,h2,h3,h4,h5 {
+  font-family: "Acme", sans-serif;
+}
+
+span,
+p,
+li {
+  font-family: "Ubuntu", sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+.app {
+  background: #bb93a9;
+  padding: 30px;
+  height: 100vh;
+}
+
+.logo {
+  width: 200px;
+  height: 120px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  background-color: rgb(125, 166, 221);
+}
+
+.nav-links {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  background-color: rgb(255, 245, 248);
+  border-radius: 3px;
+}
+
+.homepage-title {
+  text-align: center;
+  font-size: 40px;
+  max-width: 100%;
+}
+
 .usercard-border {
   border: outset 7px grey;
   width: 200px;
 }
+
+.card {
+min-width: 17em !important;
+margin-bottom: 30px !important;
+}
+
