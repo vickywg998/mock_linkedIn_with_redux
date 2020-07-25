@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Icon } from "semantic-ui-react";
+import { Icon, Input } from "semantic-ui-react";
 
 function Nav() {
 
@@ -13,14 +13,15 @@ function Nav() {
   
    <ul className="nav-links">
    <img src={require('../assets/logo.png')} className="logo" alt="logo"/>
+   <Input icon="search" placeholder="Search..." />
      <Link style={navStyle} to ='/'>
-       <li>Homepage</li>
+       <li><Icon name='home' size="small"/> Homepage</li>
      </Link>
      <Link style={navStyle} to ='/connect'>
-       <li>Connect<Icon name='heart' size="small"/></li>
+       <li><Icon name='users' size="small"/> Connect</li>
      </Link>
-     <Link style={navStyle} to ='/cart'>
-       <li>Notifications<Icon name='notifications' size="small"/></li>
+     <Link style={navStyle} to ='/notifications'>
+       <li><Icon name='alarm' size="small"/>Notifications</li>
      </Link>
    </ul>
  </nav>

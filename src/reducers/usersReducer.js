@@ -5,6 +5,12 @@ import {
 } from "../actions/usersAction";
 
 import {
+  FETCH_USER_PENDING,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_ERROR,
+} from "../actions/userAction";
+
+import {
   INCREMENT_PAGE_COUNT,
   DECREMENT_PAGE_COUNT,
 } from "../actions/pageAction";
@@ -15,6 +21,7 @@ export const initialState = {
   data: {
     users: [],
     page: 1,
+    user: [],
   },
   error: null,
 };
@@ -60,6 +67,26 @@ export default function usersReducer(state = initialState, action) {
             page: action.payload.page - 1,
         },
       };
+      case FETCH_USER_PENDING:
+        return {
+          ...state,
+          pending: true,
+        };
+      case FETCH_USER_SUCCESS:
+        return {
+          ...state,
+          pending: false,
+          data: {
+              ...state.data,
+              user: action.payload,
+          },
+        };
+      case FETCH_USER_ERROR:
+        return {
+          ...state,
+          pending: false,
+          error: action.error,
+        };
     default:
       return state;
   }
@@ -70,5 +97,8 @@ export const getUsersPending = (state) => state.pending;
 export const getUsersError = (state) => state.error;
 export const incrementPage = (state) => state.data.page;
 export const decrementPage = (state) => state.data.page;
+export const getUser = (state) => state.data.user;
+export const getUserPending = (state) => state.pending;
+export const getUserError = (state) => state.error;
 
 // these are called selectors, are used to get defined parts of the state

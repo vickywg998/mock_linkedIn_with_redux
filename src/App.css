@@ -32,7 +32,7 @@ nav {
 }
 
 .nav-links {
-  width: 70%;
+  width: 90%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -41,6 +41,14 @@ nav {
 
 .nav-links a {
   text-decoration: none;
+}
+
+a { 
+  text-decoration: none !important;
+}
+
+.card-body {
+  color:black !important;
 }
 
 .nav-links a:hover {
@@ -60,7 +68,16 @@ nav {
 }
 
 .card {
-min-width: 17em !important;
-margin-bottom: 30px !important;
+min-width: 200px !important;
+margin-bottom: 3em !important;
+text-decoration: none;
 }
 
+
+img.avatar_image {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px; 
+  display: block;
+   margin: 1em auto 0 auto;
+}
