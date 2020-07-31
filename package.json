@@ -18,7 +18,8 @@
     "redux": "^4.0.0-rc.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "talkjs": "^0.14.2"
   },
   "scripts": {
     "start": "react-scripts start",

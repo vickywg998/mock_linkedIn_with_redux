@@ -19,6 +19,7 @@ function PageButtons() {
     <>
       <p>Page: {page}</p>
 
+<div className="page_button-container">
       {page > 1 ? (
         <button onClick={decrementPage}>Prev</button>
       ) : (
@@ -33,6 +34,7 @@ function PageButtons() {
           Next
         </button>
       )}
+      </div>
     </>
   );
 }

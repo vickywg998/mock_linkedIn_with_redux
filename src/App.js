@@ -5,6 +5,7 @@ import PageButtons from "./Components/PageButtons";
 import Nav from "./Components/Nav";
 import { Container, Row, Col} from "react-bootstrap";
 import UserComponent from "./Components/UserComponent";
+import NetworkPanel from "./Components/NetworkPanel";
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import IndividualUser from "./Components/IndividualUser"
 
@@ -20,21 +21,21 @@ function UserView() {
           <Row>
             <Col md={{ span: 4, offset: 9 }}></Col>
           </Row>
-          <h1 className="homepage-title">Welcome to BlinkedIn</h1>
+          <h5 className="homepage-title"><b>The Economist - Wash your hands & wear a mask. Learn more</b></h5>
           <Row>
-            <Col xs={3}>hi</Col>
+            <Col xs={3}><NetworkPanel /></Col>
             <Col md={9}>
-              <h3>Recommended Connections</h3>
+              <h3>My Network</h3>
               <UserComponent />
               <PageButtons />
             </Col>
           </Row>
-        </Container>
+          </Container>
         </Route>
 
         <Route exact path="/user/:userId" component={IndividualUser} />  
         
-        <Route exact path="/connect"><div>hello</div></Route>
+        <Route exact path="/connect" />
 
         <Redirect from='*' to='/' />   
 

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import fetchUsers from "../fetchUsers";
 // import fetchUser from "../fetchUser";
-import { fetchUserSuccess } from "../actions/userAction";
 import { Link } from "react-router-dom";
 import "../App.css";
 import { Card, CardDeck } from "react-bootstrap";
@@ -37,8 +36,11 @@ function UserComponent() {
               <Card.Text>
                 {user.email}
               </Card.Text>
+           
+              <div className="user-action">  <button>Message</button></div>
             </Card.Body>
-          </Link>
+            
+            </Link>
           <Card.Footer>
             <small className="text-muted">Last updated 3 mins ago</small>
           </Card.Footer>
