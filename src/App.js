@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import "./App.css";
 import PageButtons from "./Components/PageButtons";
 import Nav from "./Components/Nav";
@@ -7,9 +7,12 @@ import { Container, Row, Col} from "react-bootstrap";
 import UserComponent from "./Components/UserComponent";
 import NetworkPanel from "./Components/NetworkPanel";
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import IndividualUser from "./Components/IndividualUser"
+import IndividualUser from "./Components/IndividualUser";
+import Chat from "./Components/Chat";
 
 function UserView() {
+  const showChat = useSelector((state) => state.data.showChat);
+
   return (
     <div className="product-list-wrapper">
       <Router>
@@ -40,6 +43,8 @@ function UserView() {
         <Redirect from='*' to='/' />   
 
       </Router>
+
+      {showChat && <Chat/>}
     </div>
   );
 }

@@ -22,8 +22,15 @@ export const initialState = {
     users: [],
     page: 1,
     user: [],
+    currentUser: {
+      id: "123456",
+      name: "Vicky",
+      email: "vicky@vinkedin.com",
+      photoUrl: "https://demo.talkjs.com/img/alice.jpg"
+    },
+    showChat: false
   },
-  error: null,
+  error: null
 };
 
 export default function usersReducer(state = initialState, action) {
@@ -91,14 +98,3 @@ export default function usersReducer(state = initialState, action) {
       return state;
   }
 }
-
-export const getUsers = (state) => state.data.users;
-export const getUsersPending = (state) => state.pending;
-export const getUsersError = (state) => state.error;
-export const incrementPage = (state) => state.data.page;
-export const decrementPage = (state) => state.data.page;
-export const getUser = (state) => state.data.user;
-export const getUserPending = (state) => state.pending;
-export const getUserError = (state) => state.error;
-
-// these are called selectors, are used to get defined parts of the state
